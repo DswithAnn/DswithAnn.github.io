@@ -1,12 +1,3 @@
-+++
-title = ""
-date = 2024-11-18T23:00:13+06:00
-author = ""
-keywords = ["", ""]
-cover = ""
-summary = ""
-+++
-
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Ubuntu&size=24&pause=500&color=8062D6&width=450&lines=Exploring+Data%2C+Art%2C+and+Philosophy;Building+today+with+a+vision+for+tomorrow)](https://git.io/typing-svg)
 
 ``` python
@@ -18,7 +9,7 @@ class AnnNaser:
         self.experiences = "Multidisciplinary creator & analyst"
 
     def tech_stacks(self):
-        return ["Python", "R",
+        return ["Python",
                 "Machine Learning", "Deep Learning",
                 "Pandas", "Scikit-learn", "TensorFlow",
                 "Matplotlib", "Seaborn", "Plotly",
