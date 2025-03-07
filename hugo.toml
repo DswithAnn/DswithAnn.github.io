@@ -19,7 +19,6 @@ pygmentsUseClasses = true
     avatar = "/images/avatar.jpeg"
     location = "Dhaka, Bangladesh"
     enableGitalk = false
-    rss = true
     enableLocalSearch = false
     sponsorLink = "https://www.linkedin.com/in/ann-naser-nabil"
 #    customStyleFile = "your css file name"

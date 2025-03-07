@@ -17,7 +17,7 @@ summary = "The Android activity lifecycle manages the states an activity goes th
 When developing Android applications, understanding the lifecycle of an activity is crucial. The
 activity lifecycle refers to the series of states an activity goes through, from creation to
 destruction. By understanding this lifecycle, developers can effectively manage resources, handle
-user interactions, and ensure a seamless user experience. In this blog post, we will dive deep into
+user interactions, and ensure a seamless user experience.[icon](../../static/icon) In this blog post, we will dive deep into
 the Android activity lifecycle, exploring each state and its significance.
 
 ## What is Activity Lifecycle?
