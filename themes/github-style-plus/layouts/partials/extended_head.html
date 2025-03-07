@@ -19,7 +19,7 @@
 <meta name="twitter:creator" content="{{ .Params.Author }}" />
 <meta
   name="twitter:image"
-  content="{{ if .IsHome }}{{ $.Site.Params.avatar | absURL }}{{ else }}{{ .Params.Cover | absURL }}{{ end }}"
+  content="{{ if .IsHome }}{{ $.Site.Params.avatar | absURL }}{{ else }}{{ .Params.cover | absURL }}{{ end }}"
 />
 
 <!-- OG data -->
@@ -39,7 +39,7 @@
 <meta property="og:site_name" content="{{ .Title }}" />
 <meta
   property="og:image"
-  content="{{ if .IsHome }}{{ $.Site.Params.avatar | absURL }}{{ else }}{{ .Params.Cover | absURL }}{{ end }}"
+  content="{{ if .IsHome }}{{ $.Site.Params.avatar | absURL }}{{ else }}{{ .Params.cover | absURL }}{{ end }}"
 />
 <meta property="og:image:width" content="2048" />
 <meta property="og:image:height" content="1024" />

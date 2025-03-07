@@ -1,3 +1,27 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://blog.rejowan.com'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = 'K M Rejowan Ahmmed'
+theme = 'github-style-plus'
+pygmentsCodeFences = true
+pygmentsUseClasses = true
+
+[params]
+    author = "K M Rejowan Ahmmed"
+    description = "Seeking Simplicity in Complexity"
+    github = "ahmmedrejowan"
+    enableGithubFollowers = true
+    twitter = "ahmmedrejowan"
+    linkedin = "ahmmedrejowan"
+    email = "kmrejowan@gmail.com"
+    stackoverflow="9932194"
+    lastmod = true
+    userStatusEmoji = "☠️"
+    favicon = "/images/avatar.png"
+    avatar = "/images/avatar.png"
+    location = "Dhaka, Bangladesh"
+    enableGitalk = false
+    rss = true
+    enableLocalSearch = false
+    sponsorLink = "https://www.linkedin.com/in/ahmmedrejowan/"
+#    customStyleFile = "your css file name"
+#    gtmId = "your gtm id"

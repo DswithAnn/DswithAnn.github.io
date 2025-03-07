@@ -1,8 +1,9 @@
 +++
 title = ""
 date = {{ .Date }}
+lastmod = {{ .Date }}
 author = ""
-keywords = ["", ""]
+tags = ["", ""]
 cover = ""
 summary = ""
 +++
