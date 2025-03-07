@@ -1,0 +1,3 @@
+[submodule "github-style-plus"]
+	path = github-style-plus
+	url = https://github.com/kurt-liao/github-style-plus.git
