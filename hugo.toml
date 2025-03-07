@@ -1,4 +1,4 @@
-baseURL = 'https://PythonwithAnn.github.io'
+baseURL = 'https://dswithann.github.io'
 languageCode = 'en-us'
 title = 'Ann Naser Nabil '
 theme = 'github-style-plus'
@@ -7,7 +7,7 @@ pygmentsUseClasses = true
 
 [params]
     author = "Ann Naser Nabil"
-    description = "Let's Learn Python"
+    description = "Let's have fun"
     github = "AnnNaserNabil"
     enableGithubFollowers = true
     twitter = "ann_naser_"
