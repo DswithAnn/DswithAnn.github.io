@@ -1,67 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="6e366f0a-6b40-413c-b2e0-9c5aae0140d8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/hugo.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitmodules" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.hugo_build.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/archetypes/default.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/content/post/Welcome.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hugo.toml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/archetypes/default.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/config.template.toml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/images/latex_example.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/images/mobile.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/images/screenshot.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/images/tn.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/layouts/404.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/layouts/_default/baseof.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/layouts/_default/list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/layouts/_default/single.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/layouts/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/layouts/partials/extended_head.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/layouts/partials/footer.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/layouts/partials/gitalk.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/layouts/partials/head.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/layouts/partials/header.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/layouts/partials/home.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/layouts/partials/menus.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/layouts/partials/mobile-menus.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/layouts/partials/overview.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/layouts/partials/post.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/layouts/partials/posts.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/layouts/partials/script.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/layouts/partials/tags.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/layouts/partials/user-profile.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/static/css/dark.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/static/css/frameworks.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/static/css/gitalk.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/static/css/github-style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/static/css/github.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/static/css/light.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/static/css/syntax.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/static/css/toc.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/static/images/avatar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/static/images/facebook.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/static/images/github.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/static/images/instagram.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/static/images/link.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/static/images/linkedin.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/static/images/mastodon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/static/images/misskey.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/static/images/rss.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/static/images/stackoverflow.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/static/images/tumblr.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/static/images/twitter.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/static/js/gitalk.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/static/js/github-style.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/static/js/mark.es6.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/static/js/theme-mode.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/static/js/toc.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/github-style-plus/theme.toml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/avatar.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hugo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/hugo.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,21 +17,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "AnnNaserNabil"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;AnnNaserNabil&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/PythonwithAnn/PythonwithAnn.github.io",
-    "accountId": "8ea17de7-e282-43c5-9ada-d9e1b8782bfa"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/PythonwithAnn/PythonwithAnn.github.io&quot;,
+    &quot;accountId&quot;: &quot;8ea17de7-e282-43c5-9ada-d9e1b8782bfa&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 3
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2tz3ujKnrVq3ZDg6eDmtvkxqjLH" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -97,11 +43,21 @@
     "RunOnceActivity.git.unshallow": "true",
     "com.codeium.enabled": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "/run/media/magus/data/packages",
+    "last_opened_file_path": "/run/media/magus/data/packages/python/static/images",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.editor",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/static/images" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -118,6 +74,7 @@
       <option name="presentableId" value="Default" />
       <updated>1741341300090</updated>
       <workItem from="1741341301421" duration="243000" />
+      <workItem from="1741341691192" duration="615000" />
     </task>
     <servers />
   </component>
