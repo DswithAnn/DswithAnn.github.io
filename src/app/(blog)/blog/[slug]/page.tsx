@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { getPostBySlug, getRelatedPosts } from '@/lib/posts';
+import { getAllPosts, getPostBySlug, getRelatedPosts } from '@/lib/posts';
 import { markdownToHtml } from '@/lib/markdown';
 import { formatDate, calculateReadingTime } from '@/lib/utils';
 import Link from 'next/link';
@@ -10,6 +10,13 @@ interface PostPageProps {
   params: Promise<{
     slug: string;
   }>;
+}
+
+export async function generateStaticParams() {
+  const posts = getAllPosts();
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
 }
 
 export async function generateMetadata({ params }: PostPageProps) {
@@ -121,7 +128,7 @@ export default async function PostPage({ params }: PostPageProps) {
                 {post.author}
               </span>
             )}
-            
+
             {/* Share */}
             <button className="ml-auto flex items-center gap-2 text-text-tertiary hover:text-text-primary transition-colors">
               <Share2 className="w-5 h-5" />
