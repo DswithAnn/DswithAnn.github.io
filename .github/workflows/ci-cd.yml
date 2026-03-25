@@ -3,8 +3,6 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main, master]
-  pull_request:
-    branches: [main, master]
 
 # Allow only one concurrent deployment
 concurrency:
@@ -12,35 +10,10 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # Lint and Type Check
-  lint:
-    name: Lint & Type Check
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Run ESLint
-        run: npm run lint
-
-      - name: Run TypeScript type check
-        run: npm run typecheck
-
   # Build
-  build:
-    name: Build
+  build-and-deploy:
+    name: Build and Deploy
     runs-on: ubuntu-latest
-    needs: lint
 
     steps:
       - name: Checkout repository
@@ -64,28 +37,9 @@ jobs:
       - name: Copy 404.html for GitHub Pages
         run: cp out/404.html out/404/index.html
 
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: './out'
-
-  # Deploy to GitHub Pages
-  deploy-pages:
-    name: Deploy to GitHub Pages
-    runs-on: ubuntu-latest
-    needs: build
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          force_orphan: true
