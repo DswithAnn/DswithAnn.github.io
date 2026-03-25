@@ -47,7 +47,7 @@ export function getAllPosts(): PostMeta[] {
 export function getPostBySlug(slug: string): Post | null {
   try {
     const fullPath = path.join(postsDirectory, `${slug}.md`);
-    
+
     if (!fs.existsSync(fullPath)) {
       return null;
     }
@@ -131,7 +131,7 @@ export function searchPosts(query: string): SearchResult[] {
       const titleLower = post.title.toLowerCase();
       const excerptLower = post.excerpt.toLowerCase();
       const tagsLower = post.tags.join(' ').toLowerCase();
-      
+
       let score = 0;
 
       searchTerms.forEach((term) => {
@@ -141,11 +141,7 @@ export function searchPosts(query: string): SearchResult[] {
       });
 
       return {
-        slug: post.slug,
-        title: post.title,
-        excerpt: post.excerpt,
-        date: post.date,
-        tags: post.tags,
+        ...post,
         score,
       };
     })
@@ -163,7 +159,7 @@ export function getRelatedPosts(currentSlug: string, limit: number = 3): PostMet
   if (!currentPost) return [];
 
   const allPosts = getAllPosts();
-  
+
   const relatedPosts = allPosts
     .filter((post) => post.slug !== currentSlug)
     .map((post) => {
@@ -174,13 +170,11 @@ export function getRelatedPosts(currentSlug: string, limit: number = 3): PostMet
     .sort((a, b) => b.sharedTags - a.sharedTags)
     .slice(0, limit);
 
-  // If not enough related posts, add recent ones
-  if (relatedPosts.length < limit) {
-    const recentPosts = allPosts
-      .filter((post) => post.slug !== currentSlug && !relatedPosts.find((r) => r.slug === post.slug))
-      .slice(0, limit - relatedPosts.length);
-    relatedPosts.push(...recentPosts);
-  }
+  const recentPosts = allPosts
+    .filter((post) => post.slug !== currentSlug && !relatedPosts.find((r) => r.slug === post.slug))
+    .map((post) => ({ ...post, sharedTags: 0 }))
+    .slice(0, Math.max(0, limit - relatedPosts.length));
+  relatedPosts.push(...recentPosts);
 
   return relatedPosts;
 }

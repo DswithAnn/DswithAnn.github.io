@@ -41,11 +41,6 @@ export interface TagInfo {
 /**
  * Search result type
  */
-export interface SearchResult {
-  slug: string;
-  title: string;
-  excerpt: string;
-  date: string;
-  tags: string[];
+export interface SearchResult extends PostMeta {
   score: number;
 }

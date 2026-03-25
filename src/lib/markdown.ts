@@ -17,6 +17,7 @@ export async function markdownToHtml(markdown: string): Promise<string> {
     .use(remarkRehype, {
       allowDangerousHtml: true,
     })
+    // @ts-expect-error - rehype-pretty-code types are currently incompatible with unified 11
     .use(rehypePrettyCode, {
       theme: 'github-dark',
       keepBackground: false,
