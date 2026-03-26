@@ -24,6 +24,10 @@ jobs:
   deploy:
     name: Deploy to ${{ matrix.target }}
     runs-on: ubuntu-latest
+    # Added environment for local Pages deployment to satisfy requirements
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     strategy:
       fail-fast: false
       matrix:
@@ -80,6 +84,11 @@ jobs:
           mkdir -p out/404
           cp out/404.html out/404/index.html || echo "Warning: 404.html not found"
 
+      - name: Verify Build Output
+        run: |
+          echo "Listing contents of 'out' directory:"
+          ls -R out
+
       # --- DEPLOYMENT STRATEGY ---
 
       # A. Deploy to LOCAL repository using modern Actions source
@@ -100,7 +109,8 @@ jobs:
         if: matrix.target != 'self'
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.MULTI_REPO_DEPLOY_TOKEN }}
+          # Use personal access token for external repository push
+          github_token: ${{ secrets.MULTI_REPO_DEPLOY_TOKEN || secrets.GITHUB_TOKEN }}
           external_repository: ${{ matrix.target }}
           publish_branch: gh-pages
           publish_dir: ./out
