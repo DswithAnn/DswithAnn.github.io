@@ -23,7 +23,7 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-4">
               <a
-                href="https://github.com"
+                href="https://github.com/AnnNaserNabil"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-text-tertiary hover:text-text-primary transition-colors"
@@ -32,7 +32,7 @@ export default function Footer() {
                 <Github className="w-5 h-5" />
               </a>
               <a
-                href="https://twitter.com"
+                href="https://x.com/ann_naser"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-text-tertiary hover:text-text-primary transition-colors"
@@ -41,7 +41,7 @@ export default function Footer() {
                 <Twitter className="w-5 h-5" />
               </a>
               <a
-                href="https://linkedin.com"
+                href="https://linkedin.com/in/ann-naser-nabil"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-text-tertiary hover:text-text-primary transition-colors"
