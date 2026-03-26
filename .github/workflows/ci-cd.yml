@@ -34,6 +34,14 @@ jobs:
           NEXT_TELEMETRY_DISABLED: 1
           NEXT_PUBLIC_BASE_PATH: /AutoMationServices
 
+      - name: Verify 404.html exists
+        run: |
+          if [ ! -f out/404.html ]; then
+            echo "Error: 404.html not found in build output"
+            exit 1
+          fi
+          echo "404.html found successfully"
+
       - name: Copy 404.html for GitHub Pages
         run: cp out/404.html out/404/index.html
 
