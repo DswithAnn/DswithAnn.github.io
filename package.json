@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "deploy": "npm run build && if [ ! -f out/404.html ]; then echo \"Error: 404.html not found\" && exit 1; fi && cp out/404.html out/404/index.html && npx gh-pages -d out"
+    "deploy": "npm run build && if [ ! -f out/404.html ]; then echo \"Error: 404.html not found\" && exit 1; fi && cp out/404.html out/404/index.html && touch out/.nojekyll && npx gh-pages -d out"
   },
   "dependencies": {
     "clsx": "^2.1.1",

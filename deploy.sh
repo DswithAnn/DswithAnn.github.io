@@ -15,6 +15,9 @@ echo "Copying 404.html..."
 mkdir -p out/404
 cp out/404.html out/404/index.html
 
+echo "Creating .nojekyll file to prevent GitHub Pages from ignoring _next directory..."
+touch out/.nojekyll
+
 echo "Deploying to gh-pages..."
 cd out
 git init

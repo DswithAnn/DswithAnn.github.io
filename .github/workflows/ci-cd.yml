@@ -45,6 +45,9 @@ jobs:
       - name: Copy 404.html for GitHub Pages
         run: cp out/404.html out/404/index.html
 
+      - name: Create .nojekyll file
+        run: touch out/.nojekyll
+
       - name: Deploy to gh-pages branch
         uses: peaceiris/actions-gh-pages@v4
         with:
