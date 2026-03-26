@@ -11,14 +11,14 @@ interface PostCardProps {
   variant?: 'default' | 'featured' | 'compact';
 }
 
-// Get basePath from environment or default
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '/AutoMationServices';
+// Get basePath from environment or default (empty for root deployment)
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
 // Helper function to prepend basePath to image paths
 function getImagePath(imagePath: string | undefined): string | undefined {
   if (!imagePath) return undefined;
-  // If imagePath already starts with basePath, return as-is
-  if (imagePath.startsWith(basePath)) return imagePath;
+  // If basePath is empty or imagePath already starts with basePath, return as-is
+  if (!basePath || imagePath.startsWith(basePath)) return imagePath;
   // Otherwise prepend basePath
   return `${basePath}${imagePath}`;
 }
