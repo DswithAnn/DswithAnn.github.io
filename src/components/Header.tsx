@@ -58,64 +58,65 @@ export default function Header() {
             </span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
+          {/* Desktop Navigation & Actions */}
+          <div className="flex items-center gap-4 md:gap-8">
+            <nav className="hidden md:flex items-center gap-8">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={cn(
+                    'text-sm font-medium transition-colors relative',
+                    pathname === link.href
+                      ? 'text-primary-400'
+                      : 'text-text-secondary hover:text-text-primary'
+                  )}
+                >
+                  {link.label}
+                  {pathname === link.href && (
+                    <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary-500 rounded-full" />
+                  )}
+                </Link>
+              ))}
+            </nav>
+
+            <div className="flex items-center gap-2 md:gap-4">
+              {/* Search */}
               <Link
-                key={link.href}
-                href={link.href}
-                className={cn(
-                  'text-sm font-medium transition-colors relative',
-                  pathname === link.href
-                    ? 'text-primary-400'
-                    : 'text-text-secondary hover:text-text-primary'
-                )}
+                href="/search"
+                className="p-2 text-text-secondary hover:text-text-primary hover:bg-surface-hover rounded-lg transition-colors"
+                aria-label="Search"
               >
-                {link.label}
-                {pathname === link.href && (
-                  <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary-500 rounded-full" />
-                )}
+                <Search className="w-5 h-5" />
               </Link>
-            ))}
-          </nav>
 
-          {/* Actions */}
-          <div className="flex items-center gap-2 md:gap-4">
-            {/* Search */}
-            <Link
-              href="/search"
-              className="p-2 text-text-secondary hover:text-text-primary hover:bg-surface-hover rounded-lg transition-colors"
-              aria-label="Search"
-            >
-              <Search className="w-5 h-5" />
-            </Link>
+              {/* Theme Toggle */}
+              <button
+                onClick={toggleTheme}
+                disabled={!mounted}
+                className="p-2 text-text-secondary hover:text-text-primary hover:bg-surface-hover rounded-lg transition-colors disabled:opacity-50"
+                aria-label="Toggle theme"
+              >
+                {mounted && theme === 'dark' ? (
+                  <Sun className="w-5 h-5" />
+                ) : (
+                  <Moon className="w-5 h-5" />
+                )}
+              </button>
 
-            {/* Theme Toggle */}
-            <button
-              onClick={toggleTheme}
-              disabled={!mounted}
-              className="p-2 text-text-secondary hover:text-text-primary hover:bg-surface-hover rounded-lg transition-colors disabled:opacity-50"
-              aria-label="Toggle theme"
-            >
-              {mounted && theme === 'dark' ? (
-                <Sun className="w-5 h-5" />
-              ) : (
-                <Moon className="w-5 h-5" />
-              )}
-            </button>
-
-            {/* Mobile Menu Toggle */}
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-2 text-text-secondary hover:text-text-primary hover:bg-surface-hover rounded-lg transition-colors"
-              aria-label="Toggle menu"
-            >
-              {isMenuOpen ? (
-                <X className="w-5 h-5" />
-              ) : (
-                <Menu className="w-5 h-5" />
-              )}
-            </button>
+              {/* Mobile Menu Toggle */}
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="md:hidden p-2 text-text-secondary hover:text-text-primary hover:bg-surface-hover rounded-lg transition-colors"
+                aria-label="Toggle menu"
+              >
+                {isMenuOpen ? (
+                  <X className="w-5 h-5" />
+                ) : (
+                  <Menu className="w-5 h-5" />
+                )}
+              </button>
+            </div>
           </div>
         </div>
       </div>
