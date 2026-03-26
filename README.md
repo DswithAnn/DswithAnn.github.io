@@ -193,21 +193,18 @@ theme: {
 
 The included GitHub Actions workflow handles deployment automatically.
 
-### GitHub Pages
+### GitHub Pages (Automatic)
 
-1. Update `.github/workflows/ci-cd.yml`:
-   - Set `deploy-pages.if` to `true`
-   - Set `deploy.if` to `false`
+This repository is optimized for GitHub Pages. When you fork it, follow these steps to deploy:
 
-2. Add to `next.config.js`:
-```javascript
-module.exports = {
-  output: 'export',
-  basePath: '/your-repo-name',
-};
-```
+1.  **Enable Actions**: Go to the **Actions** tab in your repository and click "I understand my workflows, go ahead and enable them".
+2.  **Trigger a Build**: Push any change to the `main` branch (like editing the site title in `src/components/Header.tsx`).
+3.  **Configure Pages Settings**:
+    *   Go to **Settings > Pages**.
+    *   Set **Source** to "Deploy from a branch".
+    *   Set **Branch** to `gh-pages` and `/ (root)`. (Note: The `gh-pages` branch is only created *after* the first successful Action run).
 
-3. Enable GitHub Pages in repository settings
+The included GitHub Actions workflow (`.github/workflows/ci-cd.yml`) automatically detects your repository name and sets the `basePath` correctly.
 
 ### Manual Deployment
 
