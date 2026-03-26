@@ -1,25 +1,37 @@
-name: Deploy to GitHub Pages
+name: Multi-Repo Deploy to GitHub Pages
 
 on:
   push:
     branches: [main, master]
   workflow_dispatch:
+    inputs:
+      deploy_to_remotes:
+        description: 'Whether to deploy to remote repositories'
+        type: boolean
+        default: false
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 permissions:
-  contents: read
+  contents: write    # Required for pushing to other repos via PAT
   pages: write
   id-token: write
 
 jobs:
-  build:
-    name: Build
+  # The "build-and-deploy" job handles both the main repo and any external mirrors
+  deploy:
+    name: Deploy to ${{ matrix.target }}
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # 1. 'self' means the current repository
+        # 2. To add more, use "org/repo-name"
+        # Example: target: [ self, "AnotherOrg/TargetRepo" ]
+        target: [ self ]
+    
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -30,16 +42,23 @@ jobs:
           node-version: "20"
           cache: "npm"
 
-      - name: Setup Pages
+      - name: Setup Pages (Detection)
         id: pages
+        if: matrix.target == 'self'
         uses: actions/configure-pages@v5
 
-      - name: Debug Environment
+      - name: Resolve Environment
+        id: env
         run: |
-          echo "Repository Name: ${{ github.event.repository.name }}"
-          echo "Repository Owner: ${{ github.repository_owner }}"
-          echo "Detected Base Path: ${{ steps.pages.outputs.base_path }}"
-          echo "Detected Origin: ${{ steps.pages.outputs.origin }}"
+          if [[ "${{ matrix.target }}" == "self" ]]; then
+            echo "BASE_PATH=${{ steps.pages.outputs.base_path }}" >> $GITHUB_OUTPUT
+            echo "REPO_FULL_NAME=${{ github.repository }}" >> $GITHUB_OUTPUT
+          else
+            # For remote repos, calculate base path from repo name
+            REPO_NAME=$(echo "${{ matrix.target }}" | cut -d'/' -f2)
+            echo "BASE_PATH=/$REPO_NAME" >> $GITHUB_OUTPUT
+            echo "REPO_FULL_NAME=${{ matrix.target }}" >> $GITHUB_OUTPUT
+          fi
 
       - name: Install dependencies
         run: npm ci
@@ -48,38 +67,37 @@ jobs:
         run: npm run build
         env:
           NEXT_TELEMETRY_DISABLED: 1
-          # Use detection from configure-pages, but allow override via variables
-          NEXT_PUBLIC_BASE_PATH: ${{ vars.NEXT_PUBLIC_BASE_PATH || steps.pages.outputs.base_path }}
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.env.outputs.BASE_PATH }}
           NEXT_PUBLIC_SITE_TITLE: ${{ vars.NEXT_PUBLIC_SITE_TITLE || github.event.repository.name }}
-          NEXT_PUBLIC_SITE_DESCRIPTION: ${{ vars.NEXT_PUBLIC_SITE_DESCRIPTION || 'A modern blog platform built with Next.js, TypeScript, and Tailwind CSS' }}
-          NEXT_PUBLIC_SITE_AUTHOR: ${{ vars.NEXT_PUBLIC_SITE_AUTHOR || github.actor }}
 
       - name: Post-build assets correction
         run: |
-          # GitHub Pages requires a .nojekyll file for directories starting with underscore
           touch out/.nojekyll
-          # Copy 404.html to 404/index.html for cleaner routing
           mkdir -p out/404
-          cp out/404.html out/404/index.html || echo "Warning: 404.html not found, skipping copy"
+          cp out/404.html out/404/index.html || echo "Warning: 404.html not found"
 
-      - name: Verify Build Output
-        run: |
-          echo "Listing contents of 'out' directory:"
-          ls -R out
+      # --- DEPLOYMENT STRATEGY ---
 
-      - name: Upload artifact
+      # A. Deploy to LOCAL repository using modern Actions source
+      - name: Upload Local Pages Artifact
+        if: matrix.target == 'self'
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
 
-  deploy:
-    name: Deploy
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
+      - name: Deploy Local Pages
+        if: matrix.target == 'self'
         id: deployment
         uses: actions/deploy-pages@v4
+
+      # B. Deploy to REMOTE repositories using PAT/Branch source
+      # Note: This requires MULTI_REPO_DEPLOY_TOKEN secret to be set
+      - name: Deploy to Remote Repo
+        if: matrix.target != 'self'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.MULTI_REPO_DEPLOY_TOKEN }}
+          external_repository: ${{ matrix.target }}
+          publish_branch: gh-pages
+          publish_dir: ./out
+          force_orphan: true
