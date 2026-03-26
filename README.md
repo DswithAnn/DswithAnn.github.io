@@ -1,5 +1,6 @@
 # Modern Blog Platform
 
+
 A production-ready blog platform built with Next.js 14, TypeScript, and Tailwind CSS. Features markdown support, tag filtering, search functionality, and automated GitHub Actions deployment.
 
 ![Next.js](https://img.shields.io/badge/Next.js-14-black?logo=next.js)
