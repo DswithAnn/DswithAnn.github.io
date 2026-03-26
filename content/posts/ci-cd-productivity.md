@@ -4,7 +4,7 @@ date: '2026-03-26'
 tags: ['CI/CD', 'DevOps', 'Agile']
 excerpt: 'Continuous Integration and Continuous Deployment are more than just buzzwords—they are the engines of modern software delivery.'
 coverImage: '/images/posts/ci-cd-productivity.png'
-author: 'Antigravity'
+author: 'Ann Naser Nabil'
 ---
 
 # CI/CD: The Ultimate Productivity Hack for Teams

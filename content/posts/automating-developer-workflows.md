@@ -4,7 +4,7 @@ date: '2026-03-26'
 tags: ['Automation', 'Developer Experience', 'Productivity']
 excerpt: 'Discover how simple automation scripts and tools can transform your daily development routine and unlock massive productivity gains.'
 coverImage: '/images/posts/automating-developer-workflows.png'
-author: 'Antigravity'
+author: 'Ann Naser Nabil'
 ---
 
 # Automating Developer Workflows: The Secret to 10x Productivity

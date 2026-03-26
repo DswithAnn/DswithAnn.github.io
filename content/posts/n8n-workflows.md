@@ -4,7 +4,7 @@ date: '2026-03-26'
 tags: ['n8n', 'Automation', 'Workflow']
 excerpt: 'Discover why n8n is the preferred choice for developers who want to build complex, self-hosted automation workflows without the high costs.'
 coverImage: '/images/posts/n8n-workflows.png'
-author: 'Antigravity'
+author: 'Ann Naser Nabil'
 ---
 
 # Mastering n8n: The Low-Code Powerhouse for Automation
