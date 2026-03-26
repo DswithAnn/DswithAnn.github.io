@@ -35,10 +35,18 @@ jobs:
         run: npm ci
 
       - name: Build static export
-        run: npm run build
+        run: |
+          # Determine base path: empty for .github.io repos (root), /repo-name for others
+          REPO_NAME="${{ github.event.repository.name }}"
+          if [[ "$REPO_NAME" == *".github.io" ]]; then
+            export NEXT_PUBLIC_BASE_PATH=""
+          else
+            export NEXT_PUBLIC_BASE_PATH="/$REPO_NAME"
+          fi
+          echo "Building with NEXT_PUBLIC_BASE_PATH=$NEXT_PUBLIC_BASE_PATH"
+          npm run build
         env:
           NEXT_TELEMETRY_DISABLED: 1
-          NEXT_PUBLIC_BASE_PATH: /AutoMationServices
 
       - name: Verify 404.html exists
         run: |

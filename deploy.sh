@@ -24,8 +24,10 @@ git init
 git add .
 git commit -m "Deploy to GitHub Pages"
 git branch -M gh-pages
-# Use HTTPS for consistency with GitHub Actions workflow
-git remote add origin https://github.com/AnnNaserNabil/AutoMationServices.git
+# Use current remote origin
+REMOTE_URL=$(git remote get-url origin)
+echo "Deploying to $REMOTE_URL..."
+git remote add origin "$REMOTE_URL"
 git push -f origin gh-pages
 
 echo "Done!"
