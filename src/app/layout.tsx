@@ -18,25 +18,36 @@ const inter = Inter({
   display: 'swap',
 });
 
+// Configurable site metadata via environment variables
+// Set these in .env.local or GitHub Actions environment
+const siteConfig = {
+  title: process.env.NEXT_PUBLIC_SITE_TITLE || 'Modern Blog Platform',
+  description: process.env.NEXT_PUBLIC_SITE_DESCRIPTION || 'A modern blog platform built with Next.js, TypeScript, and Tailwind CSS',
+  author: process.env.NEXT_PUBLIC_SITE_AUTHOR || 'Blog Author',
+  url: process.env.NEXT_PUBLIC_SITE_URL || '',
+  twitter: process.env.NEXT_PUBLIC_TWITTER_HANDLE || '',
+};
+
 export const metadata: Metadata = {
   title: {
-    default: 'Ann Naser Nabil',
-    template: '%s | Ann Naser Nabil',
+    default: siteConfig.title,
+    template: `%s | ${siteConfig.title}`,
   },
-  description: 'Automation expert and technology thought leader. Discover insights on automation, software development, and emerging technologies by Ann Naser Nabil.',
+  description: siteConfig.description,
   keywords: ['automation', 'software development', 'technology', 'programming', 'tutorials', 'DevOps', 'AI', 'machine learning', 'consulting'],
-  authors: [{ name: 'Ann Naser Nabil' }],
-  creator: 'Ann Naser Nabil',
+  authors: [{ name: siteConfig.author }],
+  creator: siteConfig.author,
+  metadataBase: siteConfig.url ? new URL(siteConfig.url) : undefined,
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    siteName: 'Ann Naser Nabil',
-    description: 'Automation expert and technology thought leader. Discover insights on automation, software development, and emerging technologies.',
+    siteName: siteConfig.title,
+    description: siteConfig.description,
   },
   twitter: {
     card: 'summary_large_image',
-    site: '@AnnNaserNabil',
-    creator: '@AnnNaserNabil',
+    site: siteConfig.twitter ? `@${siteConfig.twitter.replace('@', '')}` : undefined,
+    creator: siteConfig.twitter ? `@${siteConfig.twitter.replace('@', '')}` : undefined,
   },
   robots: {
     index: true,

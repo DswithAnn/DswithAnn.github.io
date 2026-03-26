@@ -15,6 +15,14 @@ permissions:
   id-token: write   # to verify the deployment originates from correct source
   contents: write   # to push to gh-pages branch
 
+# Environment variables available to all steps
+env:
+  NEXT_PUBLIC_SITE_TITLE: ${{ vars.NEXT_PUBLIC_SITE_TITLE || github.event.repository.name }}
+  NEXT_PUBLIC_SITE_DESCRIPTION: ${{ vars.NEXT_PUBLIC_SITE_DESCRIPTION || 'A modern blog platform built with Next.js, TypeScript, and Tailwind CSS' }}
+  NEXT_PUBLIC_SITE_AUTHOR: ${{ vars.NEXT_PUBLIC_SITE_AUTHOR || github.actor }}
+  NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL || '' }}
+  NEXT_PUBLIC_TWITTER_HANDLE: ${{ vars.NEXT_PUBLIC_TWITTER_HANDLE || '' }}
+
 jobs:
   # Build
   build-and-deploy:
@@ -41,14 +49,16 @@ jobs:
           # Project sites (e.g., username.github.io/repo-name) use "/repo-name".
           REPO_NAME="${{ github.event.repository.name }}"
           if [[ "$REPO_NAME" == *".github.io" ]]; then
-            export NEXT_PUBLIC_BASE_PATH=""
+            BASE_PATH=""
           else
-            export NEXT_PUBLIC_BASE_PATH="/$REPO_NAME"
+            BASE_PATH="/$REPO_NAME"
           fi
-          echo "Building with NEXT_PUBLIC_BASE_PATH=$NEXT_PUBLIC_BASE_PATH"
+          echo "Building with NEXT_PUBLIC_BASE_PATH=$BASE_PATH"
+          echo "Site Title: $NEXT_PUBLIC_SITE_TITLE"
           npm run build
         env:
           NEXT_TELEMETRY_DISABLED: 1
+          NEXT_PUBLIC_BASE_PATH: ${{ github.event.repository.name == github.actor + '.github.io' && '' || format('/{0}', github.event.repository.name) }}
 
       - name: Verify 404.html exists
         run: |

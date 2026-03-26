@@ -1,0 +1,61 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main, master]
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+permissions:
+  pages: write
+  id-token: write
+  contents: write
+
+jobs:
+  build-and-deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static export
+        run: |
+          export NEXT_PUBLIC_BASE_PATH=""
+          echo "Building with NEXT_PUBLIC_BASE_PATH=$NEXT_PUBLIC_BASE_PATH"
+          npm run build
+        env:
+          NEXT_TELEMETRY_DISABLED: 1
+
+      - name: Verify 404.html exists
+        run: |
+          if [ ! -f out/404.html ]; then
+            echo "Error: 404.html not found in build output"
+            exit 1
+          fi
+          echo "404.html found successfully"
+
+      - name: Copy 404.html for GitHub Pages
+        run: cp out/404.html out/404/index.html
+
+      - name: Create .nojekyll file
+        run: touch out/.nojekyll
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          force_orphan: true
+          publish_branch: main

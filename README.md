@@ -186,28 +186,74 @@ theme: {
 
 ## 🚢 Deployment
 
-### Vercel (Recommended)
+### Forking This Repository
 
-1. Push your code to GitHub
-2. Import your repository in [Vercel](https://vercel.com)
-3. Deploy automatically on every push
+This blog platform is designed to work seamlessly when forked to any GitHub organization or user account. Here's how to set it up:
 
-The included GitHub Actions workflow handles deployment automatically.
+#### Option 1: Quick Start (Uses Repository Name as Title)
 
-### GitHub Pages (Automatic)
+1.  **Fork the repository** to your GitHub account or organization
+2.  **Enable GitHub Actions**: Go to the **Actions** tab and click "I understand my workflows, go ahead and enable them"
+3.  **Push a change** to trigger the deployment workflow
+4.  **Configure GitHub Pages**:
+    - Go to **Settings > Pages**
+    - Set **Source** to "Deploy from a branch"
+    - Set **Branch** to `gh-pages` and `/ (root)`
+5.  Your site will be live at `https://your-username.github.io/your-repo-name`
 
-This repository is optimized for GitHub Pages. When you fork it, follow these steps to deploy:
+#### Option 2: Custom Configuration (Recommended)
 
-1.  **Enable Actions**: Go to the **Actions** tab in your repository and click "I understand my workflows, go ahead and enable them".
-2.  **Trigger a Build**: Push any change to the `main` branch (like editing the site title in `src/components/Header.tsx`).
-3.  **Configure Pages Settings**:
-    *   Go to **Settings > Pages**.
-    *   Set **Source** to "Deploy from a branch".
-    *   Set **Branch** to `gh-pages` and `/ (root)`. (Note: The `gh-pages` branch is only created *after* the first successful Action run).
+For a personalized site, configure your repository variables:
 
-The included GitHub Actions workflow (`.github/workflows/ci-cd.yml`) automatically detects your repository name and sets the `basePath` correctly.
+1.  **Go to your repository Settings**
+2.  **Navigate to "Actions" > "Variables"**
+3.  **Add these repository variables**:
 
-### Manual Deployment
+| Variable Name | Description | Example |
+|---------------|-------------|---------|
+| `NEXT_PUBLIC_SITE_TITLE` | Your site's title | `My Tech Blog` |
+| `NEXT_PUBLIC_SITE_DESCRIPTION` | SEO description | `Thoughts on software development and technology` |
+| `NEXT_PUBLIC_SITE_AUTHOR` | Author name | `John Doe` |
+| `NEXT_PUBLIC_SITE_URL` | Full site URL | `https://johndoe.github.io/my-blog` |
+| `NEXT_PUBLIC_TWITTER_HANDLE` | Twitter handle (without @) | `johndoe` |
+
+4.  **Push any change** to trigger a rebuild with your custom configuration
+
+The GitHub Actions workflow will automatically:
+- Detect your repository name
+- Set the correct base path for GitHub Pages
+- Use your custom configuration variables
+- Deploy to the `gh-pages` branch
+
+### Local Development Configuration
+
+1.  **Copy the example environment file**:
+    ```bash
+    cp .env.example .env.local
+    ```
+
+2.  **Edit `.env.local`** with your configuration:
+    ```env
+    NEXT_PUBLIC_SITE_TITLE="My Blog"
+    NEXT_PUBLIC_SITE_DESCRIPTION="A blog about technology and programming"
+    NEXT_PUBLIC_SITE_AUTHOR="Your Name"
+    NEXT_PUBLIC_SITE_URL="http://localhost:3000"
+    NEXT_PUBLIC_TWITTER_HANDLE="yourhandle"
+    ```
+
+3.  **Run the development server**:
+    ```bash
+    npm run dev
+    ```
+
+### Vercel (Alternative)
+
+1.  Push your code to GitHub
+2.  Import your repository in [Vercel](https://vercel.com)
+3.  Set environment variables in Vercel dashboard
+4.  Deploy automatically on every push
+
+### GitHub Pages (Manual Configuration)
 
 ```bash
 # Build for production
