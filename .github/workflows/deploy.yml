@@ -31,7 +31,15 @@ jobs:
           cache: "npm"
 
       - name: Setup Pages
+        id: pages
         uses: actions/configure-pages@v5
+
+      - name: Debug Environment
+        run: |
+          echo "Repository Name: ${{ github.event.repository.name }}"
+          echo "Repository Owner: ${{ github.repository_owner }}"
+          echo "Detected Base Path: ${{ steps.pages.outputs.base_path }}"
+          echo "Detected Origin: ${{ steps.pages.outputs.origin }}"
 
       - name: Install dependencies
         run: npm ci
@@ -40,11 +48,8 @@ jobs:
         run: npm run build
         env:
           NEXT_TELEMETRY_DISABLED: 1
-          # Determine base path: 
-          # 1. Use NEXT_PUBLIC_BASE_PATH if set in repository variables.
-          # 2. If repo name is <owner>.github.io, basePath is empty ("").
-          # 3. Otherwise, basePath is /<repo-name>.
-          NEXT_PUBLIC_BASE_PATH: ${{ vars.NEXT_PUBLIC_BASE_PATH || (github.event.repository.name == format('{0}.github.io', github.repository_owner) && '' || format('/{0}', github.event.repository.name)) }}
+          # Use detection from configure-pages, but allow override via variables
+          NEXT_PUBLIC_BASE_PATH: ${{ vars.NEXT_PUBLIC_BASE_PATH || steps.pages.outputs.base_path }}
           NEXT_PUBLIC_SITE_TITLE: ${{ vars.NEXT_PUBLIC_SITE_TITLE || github.event.repository.name }}
           NEXT_PUBLIC_SITE_DESCRIPTION: ${{ vars.NEXT_PUBLIC_SITE_DESCRIPTION || 'A modern blog platform built with Next.js, TypeScript, and Tailwind CSS' }}
           NEXT_PUBLIC_SITE_AUTHOR: ${{ vars.NEXT_PUBLIC_SITE_AUTHOR || github.actor }}
