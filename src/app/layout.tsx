@@ -20,21 +20,23 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: 'AutoMation Services',
-    template: '%s | AutoMation Services',
+    default: 'Ann Naser Nabil',
+    template: '%s | Ann Naser Nabil',
   },
-  description: 'Insights on automation, software development, and technology by Ann Naser Nabil',
-  keywords: ['automation', 'software development', 'technology', 'programming', 'tutorials', 'DevOps'],
+  description: 'Automation expert and technology thought leader. Discover insights on automation, software development, and emerging technologies by Ann Naser Nabil.',
+  keywords: ['automation', 'software development', 'technology', 'programming', 'tutorials', 'DevOps', 'AI', 'machine learning', 'consulting'],
   authors: [{ name: 'Ann Naser Nabil' }],
   creator: 'Ann Naser Nabil',
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    siteName: 'AutoMation Services',
+    siteName: 'Ann Naser Nabil',
+    description: 'Automation expert and technology thought leader. Discover insights on automation, software development, and emerging technologies.',
   },
   twitter: {
     card: 'summary_large_image',
     site: '@AnnNaserNabil',
+    creator: '@AnnNaserNabil',
   },
   robots: {
     index: true,
