@@ -1,25 +1,10 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useTheme } from 'next-themes';
+import { ThemeProvider as NextThemesProvider } from 'next-themes';
+import type { ComponentProps } from 'react';
 
-export default function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const { setTheme, resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+type ThemeProviderProps = ComponentProps<typeof NextThemesProvider>;
 
-  useEffect(() => {
-    setMounted(true);
-    // Set dark mode by default
-    document.documentElement.classList.add('dark');
-  }, []);
-
-  if (!mounted) {
-    return <>{children}</>;
-  }
-
-  return (
-    <div className={resolvedTheme === 'dark' ? 'dark' : ''}>
-      {children}
-    </div>
-  );
+export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
+  return <NextThemesProvider {...props}>{children}</NextThemesProvider>;
 }
