@@ -11,8 +11,9 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme, resolvedTheme } = useTheme();
   const pathname = usePathname();
+  const currentTheme = mounted ? resolvedTheme : 'dark';
 
   // Handle scroll effect
   useEffect(() => {
@@ -25,7 +26,7 @@ export default function Header() {
 
   // Handle theme toggle
   const toggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark');
+    setTheme(currentTheme === 'dark' ? 'light' : 'dark');
   };
 
   // Wait for client-side mounting to avoid hydration mismatch
@@ -54,7 +55,7 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
             <span className="text-xl md:text-2xl font-heading font-bold gradient-text transition-transform group-hover:scale-105">
-              {process.env.NEXT_PUBLIC_SITE_TITLE || 'Blog'}
+              Ann Naser Nabil
             </span>
           </Link>
 
@@ -97,10 +98,14 @@ export default function Header() {
                 className="p-2 text-text-secondary hover:text-text-primary hover:bg-surface-hover rounded-lg transition-colors disabled:opacity-50"
                 aria-label="Toggle theme"
               >
-                {mounted && theme === 'dark' ? (
-                  <Sun className="w-5 h-5" />
+                {mounted ? (
+                  currentTheme === 'dark' ? (
+                    <Sun className="w-5 h-5" />
+                  ) : (
+                    <Moon className="w-5 h-5" />
+                  )
                 ) : (
-                  <Moon className="w-5 h-5" />
+                  <div className="w-5 h-5" /> // Placeholder
                 )}
               </button>
 

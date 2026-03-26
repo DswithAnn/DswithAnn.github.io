@@ -16,7 +16,7 @@ const config: Config = {
         body: ['Inter', 'system-ui', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
       },
-      
+
       // Custom color palette - dark mode optimized
       colors: {
         // Primary brand color - sophisticated teal/cyan
@@ -48,26 +48,26 @@ const config: Config = {
         },
         // Dark mode backgrounds
         background: {
-          DEFAULT: '#0a0a0b',
-          secondary: '#121214',
-          tertiary: '#18181b',
-          elevated: '#1c1c1f',
+          DEFAULT: 'var(--background)',
+          secondary: 'var(--background-secondary)',
+          tertiary: 'var(--background-tertiary)',
+          elevated: 'var(--background-elevated)',
         },
         // Surface colors with subtle borders
         surface: {
-          DEFAULT: '#18181b',
-          hover: '#1f1f23',
-          border: '#27272a',
+          DEFAULT: 'var(--surface)',
+          hover: 'var(--surface-hover)',
+          border: 'var(--surface-border)',
         },
         // Text colors with proper contrast
         text: {
-          primary: '#fafafa',
-          secondary: '#a1a1aa',
-          tertiary: '#71717a',
-          muted: '#52525b',
+          primary: 'var(--text-primary)',
+          secondary: 'var(--text-secondary)',
+          tertiary: 'var(--text-tertiary)',
+          muted: 'var(--text-muted)',
         },
       },
-      
+
       // Animation and transitions
       animation: {
         'fade-in': 'fadeIn 0.5s ease-out forwards',
@@ -103,24 +103,24 @@ const config: Config = {
           '100%': { backgroundPosition: '1000px 0' },
         },
       },
-      
+
       // Glassmorphism effects
       backdropBlur: {
         xs: '2px',
       },
-      
+
       // Border radius scale
       borderRadius: {
         '4xl': '2rem',
       },
-      
+
       // Spacing scale extensions
       spacing: {
         '18': '4.5rem',
         '88': '22rem',
         '128': '32rem',
       },
-      
+
       // Typography plugin extensions
       typography: {
         DEFAULT: {
