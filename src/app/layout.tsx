@@ -19,21 +19,21 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: 'DevBlog',
-    template: '%s | DevBlog',
+    default: 'AutoMation Services',
+    template: '%s | AutoMation Services',
   },
-  description: 'A modern blog platform for developers and tech enthusiasts',
-  keywords: ['blog', 'technology', 'development', 'programming', 'tutorial'],
-  authors: [{ name: 'DevBlog Team' }],
-  creator: 'DevBlog',
+  description: 'Insights on automation, software development, and technology by Ann Naser Nabil',
+  keywords: ['automation', 'software development', 'technology', 'programming', 'tutorials', 'DevOps'],
+  authors: [{ name: 'Ann Naser Nabil' }],
+  creator: 'Ann Naser Nabil',
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    siteName: 'DevBlog',
+    siteName: 'AutoMation Services',
   },
   twitter: {
     card: 'summary_large_image',
-    site: '@devblog',
+    site: '@AnnNaserNabil',
   },
   robots: {
     index: true,

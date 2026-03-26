@@ -48,7 +48,7 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
             <span className="text-xl md:text-2xl font-heading font-bold gradient-text transition-transform group-hover:scale-105">
-              DevBlog
+              AutoMation Services
             </span>
           </Link>
 

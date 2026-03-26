@@ -24,17 +24,17 @@ export default async function HomePage() {
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-600/10 border border-primary-500/30 text-primary-400 text-sm font-medium mb-6 animate-fade-in">
               <Sparkles className="w-4 h-4" />
-              Welcome to DevBlog
+              Welcome to AutoMation Services
             </div>
-            
+
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-text-primary mb-6 animate-slide-up">
-              Insights & Stories from the{' '}
-              <span className="gradient-text">World of Technology</span>
+              Insights & Stories on{' '}
+              <span className="gradient-text">Automation & Technology</span>
             </h1>
-            
+
             <p className="text-lg md:text-xl text-text-secondary mb-8 max-w-2xl animate-slide-up text-balance">
-              Discover tutorials, best practices, and thought-provoking articles 
-              on software development, system design, and emerging technologies.
+              Discover tutorials, best practices, and thought-provoking articles
+              on automation, software development, system design, and emerging technologies by Ann Naser Nabil.
             </p>
 
             <div className="flex flex-wrap gap-4 animate-slide-up">

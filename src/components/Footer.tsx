@@ -14,12 +14,12 @@ export default function Footer() {
           <div className="md:col-span-2">
             <Link href="/" className="inline-block mb-4">
               <span className="text-2xl font-heading font-bold gradient-text">
-                DevBlog
+                AutoMation Services
               </span>
             </Link>
             <p className="text-text-secondary mb-4 max-w-md">
-              A modern blog platform for developers and tech enthusiasts. 
-              Sharing insights, tutorials, and stories from the world of technology.
+              Insights on automation, software development, and technology.
+              Sharing tutorials, best practices, and stories by Ann Naser Nabil.
             </p>
             <div className="flex items-center gap-4">
               <a
@@ -113,7 +113,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-surface-border mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-text-tertiary text-sm">
-            © {currentYear} DevBlog. All rights reserved.
+            © {currentYear} AutoMation Services by Ann Naser Nabil. All rights reserved.
           </p>
           <div className="flex items-center gap-6 text-sm">
             <Link href="/privacy" className="text-text-tertiary hover:text-text-primary transition-colors">
