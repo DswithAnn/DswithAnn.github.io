@@ -62,6 +62,11 @@ jobs:
           mkdir -p out/404
           cp out/404.html out/404/index.html || echo "Warning: 404.html not found, skipping copy"
 
+      - name: Verify Build Output
+        run: |
+          echo "Listing contents of 'out' directory:"
+          ls -R out
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
