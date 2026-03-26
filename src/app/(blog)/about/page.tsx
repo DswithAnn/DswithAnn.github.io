@@ -91,7 +91,7 @@ export default function AboutPage() {
               </p>
               <div className="flex flex-wrap gap-4">
                 <a
-                  href="mailto:contact@annnasernabil.com"
+                  href="mailto:ann.n.nabil@gmail.com"
                   className="flex items-center gap-2 px-4 py-2 rounded-lg bg-surface border border-surface-border text-text-secondary hover:text-text-primary hover:border-primary-500/30 transition-colors"
                 >
                   <Mail className="w-5 h-5" />
@@ -107,7 +107,7 @@ export default function AboutPage() {
                   GitHub
                 </a>
                 <a
-                  href="https://twitter.com/AnnNaserNabil"
+                  href="https://x.com/ann_naser"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 px-4 py-2 rounded-lg bg-surface border border-surface-border text-text-secondary hover:text-text-primary hover:border-primary-500/30 transition-colors"
@@ -116,7 +116,7 @@ export default function AboutPage() {
                   Twitter
                 </a>
                 <a
-                  href="https://linkedin.com/in/AnnNaserNabil"
+                  href="https://linkedin.com/in/ann-naser-nabil"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 px-4 py-2 rounded-lg bg-surface border border-surface-border text-text-secondary hover:text-text-primary hover:border-primary-500/30 transition-colors"
