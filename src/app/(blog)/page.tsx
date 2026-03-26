@@ -303,7 +303,7 @@ export default async function HomePage() {
             {/* Social Links */}
             <div className="flex items-center justify-center gap-4 mb-8">
               <a
-                href="https://github.com"
+                href="https://github.com/AnnNaserNabil"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-4 rounded-xl bg-surface border border-surface-border text-text-secondary hover:text-text-primary hover:border-primary-500/30 hover:bg-primary-600/10 transition-all duration-200"
@@ -312,7 +312,7 @@ export default async function HomePage() {
                 <Github className="w-6 h-6" />
               </a>
               <a
-                href="https://twitter.com"
+                href="https://x.com/ann_naser"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-4 rounded-xl bg-surface border border-surface-border text-text-secondary hover:text-text-primary hover:border-primary-500/30 hover:bg-primary-600/10 transition-all duration-200"
@@ -321,7 +321,7 @@ export default async function HomePage() {
                 <Twitter className="w-6 h-6" />
               </a>
               <a
-                href="https://linkedin.com"
+                href="https://linkedin.com/in/ann-naser-nabil"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-4 rounded-xl bg-surface border border-surface-border text-text-secondary hover:text-text-primary hover:border-primary-500/30 hover:bg-primary-600/10 transition-all duration-200"
