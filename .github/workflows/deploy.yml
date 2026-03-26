@@ -1,0 +1,75 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build with Next.js
+        run: npm run build
+        env:
+          NEXT_TELEMETRY_DISABLED: 1
+          # Determine base path: 
+          # 1. Use NEXT_PUBLIC_BASE_PATH if set in repository variables.
+          # 2. If repo name is <owner>.github.io, basePath is empty ("").
+          # 3. Otherwise, basePath is /<repo-name>.
+          NEXT_PUBLIC_BASE_PATH: ${{ vars.NEXT_PUBLIC_BASE_PATH || (github.event.repository.name == format('{0}.github.io', github.repository_owner) && '' || format('/{0}', github.event.repository.name)) }}
+          NEXT_PUBLIC_SITE_TITLE: ${{ vars.NEXT_PUBLIC_SITE_TITLE || github.event.repository.name }}
+          NEXT_PUBLIC_SITE_DESCRIPTION: ${{ vars.NEXT_PUBLIC_SITE_DESCRIPTION || 'A modern blog platform built with Next.js, TypeScript, and Tailwind CSS' }}
+          NEXT_PUBLIC_SITE_AUTHOR: ${{ vars.NEXT_PUBLIC_SITE_AUTHOR || github.actor }}
+
+      - name: Post-build assets correction
+        run: |
+          # GitHub Pages requires a .nojekyll file for directories starting with underscore
+          touch out/.nojekyll
+          # Copy 404.html to 404/index.html for cleaner routing
+          mkdir -p out/404
+          cp out/404.html out/404/index.html || echo "Warning: 404.html not found, skipping copy"
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./out
+
+  deploy:
+    name: Deploy
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
