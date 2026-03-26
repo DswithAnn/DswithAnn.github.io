@@ -9,6 +9,12 @@ concurrency:
   group: "pages"
   cancel-in-progress: true
 
+# Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+permissions:
+  pages: write      # to deploy to Pages
+  id-token: write   # to verify the deployment originates from correct source
+  contents: write   # to push to gh-pages branch
+
 jobs:
   # Build
   build-and-deploy:
