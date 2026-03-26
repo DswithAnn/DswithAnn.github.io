@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { Calendar, Clock, ArrowRight } from 'lucide-react';
 import { PostMeta } from '@/types/blog';
@@ -9,21 +11,40 @@ interface PostCardProps {
   variant?: 'default' | 'featured' | 'compact';
 }
 
+// Get basePath from environment or default
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '/AutoMationServices';
+
+// Helper function to prepend basePath to image paths
+function getImagePath(imagePath: string | undefined): string | undefined {
+  if (!imagePath) return undefined;
+  // If imagePath already starts with basePath, return as-is
+  if (imagePath.startsWith(basePath)) return imagePath;
+  // Otherwise prepend basePath
+  return `${basePath}${imagePath}`;
+}
+
 export default function PostCard({ post, variant = 'default' }: PostCardProps) {
   const { slug, title, date, tags, excerpt, coverImage, readingTime } = post;
+  const imagePath = getImagePath(coverImage);
 
   if (variant === 'featured') {
     return (
       <article className="group relative overflow-hidden rounded-2xl bg-surface border border-surface-border card-hover">
-        {coverImage && (
+        {imagePath ? (
           <div className="absolute inset-0">
             <img
-              src={coverImage}
+              src={imagePath}
               alt={title}
               className="w-full h-full object-cover opacity-30 group-hover:opacity-40 group-hover:scale-105 transition-all duration-500"
+              onError={(e) => {
+                // Fallback to placeholder if image fails to load
+                e.currentTarget.src = 'https://placehold.co/1200x630/18181b/2dd4bf?text=' + encodeURIComponent(title.substring(0, 30));
+              }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
           </div>
+        ) : (
+          <div className="absolute inset-0 bg-gradient-to-br from-primary-900/30 to-secondary-900/30" />
         )}
         
         <div className="relative p-6 md:p-8 lg:p-10">
@@ -99,15 +120,28 @@ export default function PostCard({ post, variant = 'default' }: PostCardProps) {
   // Default variant
   return (
     <article className="group flex flex-col h-full rounded-xl bg-surface border border-surface-border overflow-hidden card-hover">
-      {coverImage && (
+      {imagePath ? (
         <Link href={`/blog/${slug}`} className="relative block overflow-hidden aspect-video">
           <img
-            src={coverImage}
+            src={imagePath}
             alt={title}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             loading="lazy"
+            onError={(e) => {
+              // Fallback to placeholder if image fails to load
+              e.currentTarget.src = 'https://placehold.co/1200x630/18181b/2dd4bf?text=' + encodeURIComponent(title.substring(0, 30));
+            }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        </Link>
+      ) : (
+        // Fallback when no coverImage is provided
+        <Link href={`/blog/${slug}`} className="relative block overflow-hidden aspect-video bg-gradient-to-br from-primary-900/20 to-secondary-900/20">
+          <div className="absolute inset-0 flex items-center justify-center p-6">
+            <h3 className="font-heading font-bold text-text-primary/20 text-center line-clamp-3">
+              {title}
+            </h3>
+          </div>
         </Link>
       )}
 

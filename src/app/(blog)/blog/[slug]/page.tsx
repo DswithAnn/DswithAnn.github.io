@@ -6,6 +6,18 @@ import Link from 'next/link';
 import { Calendar, Clock, Tag, ArrowLeft, Share2 } from 'lucide-react';
 import PostCard from '@/components/PostCard';
 
+// Get basePath from environment or default
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '/AutoMationServices';
+
+// Helper function to prepend basePath to image paths
+function getImagePath(imagePath: string | undefined): string | undefined {
+  if (!imagePath) return undefined;
+  // If imagePath already starts with basePath, return as-is
+  if (imagePath.startsWith(basePath)) return imagePath;
+  // Otherwise prepend basePath
+  return `${basePath}${imagePath}`;
+}
+
 interface PostPageProps {
   params: Promise<{
     slug: string;
@@ -29,6 +41,8 @@ export async function generateMetadata({ params }: PostPageProps) {
     };
   }
 
+  const imagePath = getImagePath(post.coverImage);
+
   return {
     title: post.title,
     description: post.excerpt,
@@ -38,13 +52,13 @@ export async function generateMetadata({ params }: PostPageProps) {
       type: 'article',
       publishedTime: post.date,
       authors: [post.author || 'DevBlog'],
-      images: post.coverImage ? [{ url: post.coverImage }] : [],
+      images: imagePath ? [{ url: imagePath }] : [],
     },
     twitter: {
       card: 'summary_large_image',
       title: post.title,
       description: post.excerpt,
-      images: post.coverImage ? [post.coverImage] : [],
+      images: imagePath ? [imagePath] : [],
     },
   };
 }
@@ -59,6 +73,7 @@ export default async function PostPage({ params }: PostPageProps) {
 
   const html = await markdownToHtml(post.content);
   const relatedPosts = getRelatedPosts(slug, 3);
+  const imagePath = getImagePath(post.coverImage);
 
   return (
     <article className="min-h-screen">
@@ -75,16 +90,6 @@ export default async function PostPage({ params }: PostPageProps) {
 
       {/* Hero */}
       <header className="container mx-auto px-4 mb-12">
-        {post.coverImage && (
-          <div className="mb-8 rounded-2xl overflow-hidden border border-surface-border">
-            <img
-              src={post.coverImage}
-              alt={post.title}
-              className="w-full aspect-video object-cover"
-            />
-          </div>
-        )}
-
         <div className="max-w-4xl mx-auto">
           {/* Tags */}
           <div className="flex flex-wrap gap-2 mb-6">
@@ -136,6 +141,17 @@ export default async function PostPage({ params }: PostPageProps) {
             </button>
           </div>
         </div>
+
+        {/* Cover Image - After content for better above-the-fold visibility */}
+        {imagePath && (
+          <div className="mt-8 rounded-2xl overflow-hidden border border-surface-border">
+            <img
+              src={imagePath}
+              alt={post.title}
+              className="w-full max-h-[25vh] object-cover"
+            />
+          </div>
+        )}
       </header>
 
       {/* Content */}
