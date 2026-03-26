@@ -27,10 +27,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # 1. 'self' means the current repository
-        # 2. To add more, use "org/repo-name"
-        # Example: target: [ self, "AnotherOrg/TargetRepo" ]
-        target: [ self ]
+        include:
+          - target: self
+            # title: "My Primary Blog"  # Optional: Override the default title
+          - target: "DswithAnn/DswithAnn.github.io"
+            title: "Automate with Ann"
     
     steps:
       - name: Checkout
@@ -68,7 +69,10 @@ jobs:
         env:
           NEXT_TELEMETRY_DISABLED: 1
           NEXT_PUBLIC_BASE_PATH: ${{ steps.env.outputs.BASE_PATH }}
-          NEXT_PUBLIC_SITE_TITLE: ${{ vars.NEXT_PUBLIC_SITE_TITLE || github.event.repository.name }}
+          # Title order: 1. Matrix Title, 2. Repo Variable, 3. 'Ann Naser Nabil' (default)
+          NEXT_PUBLIC_SITE_TITLE: ${{ matrix.title || vars.NEXT_PUBLIC_SITE_TITLE || 'Ann Naser Nabil' }}
+          NEXT_PUBLIC_SITE_DESCRIPTION: ${{ vars.NEXT_PUBLIC_SITE_DESCRIPTION || 'A modern blog platform built with Next.js, TypeScript, and Tailwind CSS' }}
+          NEXT_PUBLIC_SITE_AUTHOR: ${{ vars.NEXT_PUBLIC_SITE_AUTHOR || github.actor }}
 
       - name: Post-build assets correction
         run: |
