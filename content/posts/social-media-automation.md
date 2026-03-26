@@ -4,7 +4,7 @@ date: '2026-03-26'
 tags: ['Social Media', 'Marketing', 'Developer Brand']
 excerpt: 'Building a personal brand is hard. Automation makes it easier by handling the scheduling and cross-posting for you.'
 coverImage: '/images/posts/social-media-automation.png'
-author: 'Antigravity'
+author: 'Ann Naser Nabil'
 ---
 
 # Social Media for Devs: How to Build Your Personal Brand on Autopilot

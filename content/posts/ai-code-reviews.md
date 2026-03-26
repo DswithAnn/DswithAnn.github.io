@@ -4,7 +4,7 @@ date: '2026-03-26'
 tags: ['AI', 'Code Review', 'Automation']
 excerpt: 'How AI-driven tools are revolutionizing the code review process, catching bugs before they hit production, and teaching devs better habits.'
 coverImage: '/images/posts/ai-code-reviews.png'
-author: 'Antigravity'
+author: 'Ann Naser Nabil'
 ---
 
 # AI-Powered Code Analysis: Your New 24/7 Senior Developer

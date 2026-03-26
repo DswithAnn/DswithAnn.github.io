@@ -4,7 +4,7 @@ date: '2026-03-26'
 tags: ['Marketing', 'SaaS', 'Sales']
 excerpt: 'Learn how to use automation to nurture leads, drive conversions, and retain customers on autopilot.'
 coverImage: '/images/posts/marketing-automation-saas.png'
-author: 'Antigravity'
+author: 'Ann Naser Nabil'
 ---
 
 # Marketing Automation: Scaling Your SaaS Without Increasing Your Team

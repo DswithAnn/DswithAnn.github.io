@@ -4,7 +4,7 @@ date: '2026-03-26'
 tags: ['Deployment', 'Docker', 'Automation']
 excerpt: 'Learn how to use Docker and automated tunnels like Cloudflare to deploy your applications with zero downtime and maximum security.'
 coverImage: '/images/posts/deployment-automation.png'
-author: 'Antigravity'
+author: 'Ann Naser Nabil'
 ---
 
 # Zero-Downtime Deployments: The Magic of Automated Tunnels and Docker

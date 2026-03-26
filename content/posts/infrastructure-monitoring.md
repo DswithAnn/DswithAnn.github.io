@@ -4,7 +4,7 @@ date: '2026-03-26'
 tags: ['Monitoring', 'SRE', 'Automation']
 excerpt: 'Monitoring is more than just looking at graphs. Its about using automation to detect anomalies and trigger self-healing actions.'
 coverImage: '/images/posts/infrastructure-monitoring.png'
-author: 'Antigravity'
+author: 'Ann Naser Nabil'
 ---
 
 # Predictive Monitoring: Using Automation to Prevent Outages Before They Happen

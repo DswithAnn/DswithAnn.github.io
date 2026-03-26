@@ -4,7 +4,7 @@ date: '2026-03-26'
 tags: ['Lead Gen', 'B2B', 'Sales Automation']
 excerpt: 'Stop manual prospecting and start using automated systems to find and qualify your ideal B2B customers.'
 coverImage: '/images/posts/lead-gen-automation.png'
-author: 'Antigravity'
+author: 'Ann Naser Nabil'
 ---
 
 # Automated B2B Lead Gen: How to Fill Your Pipeline While You Sleep

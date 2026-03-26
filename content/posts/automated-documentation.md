@@ -4,7 +4,7 @@ date: '2026-03-26'
 tags: ['Documentation', 'Automation', 'Knowledge Management']
 excerpt: 'Stop shipping outdated docs. Learn how to automate your documentation process to save time and reduce confusion.'
 coverImage: '/images/posts/automated-documentation.png'
-author: 'Antigravity'
+author: 'Ann Naser Nabil'
 ---
 
 # Automated Documentation: Keeping Your Docs as Fresh as Your Code
