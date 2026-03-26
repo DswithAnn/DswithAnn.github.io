@@ -42,6 +42,7 @@ function BlogContentInner({ allPosts, tags }: BlogContentProps) {
                     </h2>
                     <TagFilter
                         tags={tags}
+                        totalCount={allPosts.length}
                         selectedTag={tag}
                         onTagSelect={handleTagSelect}
                         variant="default"

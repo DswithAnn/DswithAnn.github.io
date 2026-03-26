@@ -6,12 +6,19 @@ import { cn } from '@/lib/utils';
 
 interface TagFilterProps {
   tags: TagInfo[];
+  totalCount?: number;
   selectedTag?: string | null;
   onTagSelect?: (tag: string | null) => void;
   variant?: 'default' | 'cloud';
 }
 
-export default function TagFilter({ tags, selectedTag, onTagSelect, variant = 'default' }: TagFilterProps) {
+export default function TagFilter({
+  tags,
+  totalCount,
+  selectedTag,
+  onTagSelect,
+  variant = 'default'
+}: TagFilterProps) {
   const [searchQuery, setSearchQuery] = useState('');
 
   const filteredTags = useMemo(() => {
@@ -83,7 +90,7 @@ export default function TagFilter({ tags, selectedTag, onTagSelect, variant = 'd
         >
           <span>All Posts</span>
           <span className="text-xs opacity-60">
-            {tags.reduce((acc, tag) => acc + tag.count, 0)}
+            {totalCount ?? tags.reduce((acc, tag) => acc + tag.count, 0)}
           </span>
         </button>
 
