@@ -11,8 +11,9 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme, resolvedTheme } = useTheme();
   const pathname = usePathname();
+  const currentTheme = mounted ? resolvedTheme : 'dark';
 
   // Handle scroll effect
   useEffect(() => {
@@ -25,7 +26,7 @@ export default function Header() {
 
   // Handle theme toggle
   const toggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark');
+    setTheme(currentTheme === 'dark' ? 'light' : 'dark');
   };
 
   // Wait for client-side mounting to avoid hydration mismatch
@@ -97,10 +98,14 @@ export default function Header() {
                 className="p-2 text-text-secondary hover:text-text-primary hover:bg-surface-hover rounded-lg transition-colors disabled:opacity-50"
                 aria-label="Toggle theme"
               >
-                {mounted && theme === 'dark' ? (
-                  <Sun className="w-5 h-5" />
+                {mounted ? (
+                  currentTheme === 'dark' ? (
+                    <Sun className="w-5 h-5" />
+                  ) : (
+                    <Moon className="w-5 h-5" />
+                  )
                 ) : (
-                  <Moon className="w-5 h-5" />
+                  <div className="w-5 h-5" /> // Placeholder
                 )}
               </button>
 
